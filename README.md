@@ -1,46 +1,94 @@
 #### Following the tutorial here: 
 <i>https://www.youtube.com/watch?v=bml92jhF4t8</i>
-## Snippets To Remember
-**[x]: *rsc* - React Stateless Component**
+# Redux Actions
+***rdac* - Redux Toolkit: Create Action (also in reducer)**
 ```
-import React from 'react';
+import { createAction } from '@reduxjs/toolkit';
 
-const BugsList = () => {
-  return (
-    <div>
-      
-    </div>
-  );
+const name = createAction('action/type');
+```
+***rdac* - Redux actionCreator (Preferred)**
+```
+export const actionCreator = (payload) => {
+  return {
+    type: 'ACTION_TYPE',
+    payload
+  }
 };
+```
+***action* - Redux actionCreator (Async Await)**
+```
+export const  = () => {
+  return async dispatch => {
+    try {
 
-export default BugsList;
+    } catch (e) {}
+  };
+};
 ```
-**[x]: *rsf* - React Stateless Function**
+***rdat* - Creates const for Action Type**
 ```
-import React from 'react';
+export const ACTION_NAME = 'ACTION_NAME';
+```
+# Redux Store
+***rts* - Redux Toolkit: Configure Store**
+```
+import { configureStore } from '@reduxjs/toolkit';
 
-function BugsList(props) {
-  return (
-    <div>
-      
-    </div>
-  );
-}
+import reducer from 'location';
 
-export default BugsList;
-```
-**[x]: *rxaction* - Redux Action**
-```
-export const first = (payload) => ({
-  type: second,
-  payload,
+export default configureStore({
+  reducerName: reducer,
 });
 ```
-**[x]: *rxconst* - Redux Constant**
+***store* - Redux Store**
 ```
-export const first = 'first';
+import { reducerName } from './reducer'
+import { createStore } from 'redux'
+
+const store = createStore(reducerName)
+
+export default store
 ```
-**[x]: *rxreducer* - Redux Reducer**
+***provider* - React-Redux Provider**
+```
+<Provider store={store}>
+  Component
+</Provider>
+```
+# Redux Reducer
+***rtcr* - Redux Toolkit: Create Reducer (Preferred)**
+```
+import { createAction, createReducer } from '@reduxjs/toolkit';
+
+const name = createAction('action/type');
+
+const initialState = {};
+
+const reducerName = createReducer(initialState, builder => {
+  builder
+    .addCase(name, (state, action) => {
+      
+    });
+});
+```
+***rdr* - Redux Reducer (Preferred)**
+```
+const initialState = {}
+
+const reducerName = (state = initialState, action) => {
+  const newState = { ...state };
+
+  if (action.type === 'ACTION_TYPE'){
+    // return something 
+  } else {
+    return newState
+  };
+};
+
+export default reducerName;
+```
+***rxreducer* - Redux Reducer**
 ```
 const initialState = {};
 
@@ -54,13 +102,38 @@ export default (state = initialState, { type, payload }) => {
   }
 };
 ```
-**[x]: *rxselect* - Redux Select**
+***rdcr* - Creates Redux Combine Reducers**
 ```
-import { createSelector } from 'reselect';
+import { combineReducers } from 'redux';
 
-export const first = (state) => state.second;
+import reducerName from 'reducerPath';
+
+export default combineReducers({
+  
+});
 ```
-**[x]: *rxslice* - Redux Slice**
+# Redux Slice
+***rtcs* - Redux Toolkit: Create Slice (Preferred)**
+```
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {};
+
+export const sliceName = createSlice({
+  name: 'name',
+  initialState,
+  reducers: {
+    name: (state, action) => {
+      // ...
+    },
+  },
+});
+
+export const { name } = sliceName.actions;
+
+export default sliceName.reducer;
+```
+***rxslice* - Redux Slice**
 ```
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -76,5 +149,19 @@ export const {} = BugsList.actions;
 
 export default BugsList.reducer;
 ```
+# Redux Selectors
+***selector* - Redux Select**
+```
+export const selectorName = createSelector(
+  [filter1, filter2]
+  (filter1, filter2) => {
 
+  }
+)
+```
+***rxselect* - Redux Select**
+```
+import { createSelector } from 'reselect';
 
+export const first = (state) => state.second;
+```
