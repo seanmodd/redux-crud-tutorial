@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 
 function Layout(props) {
+  
   return (
     <>
       <div className={styles.container}>
