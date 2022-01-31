@@ -1,5 +1,3 @@
-#### Following the tutorial here: 
-<i>https://www.youtube.com/watch?v=bml92jhF4t8</i>
 # Redux Actions
 ***rdac* - Redux Toolkit: Create Action (also in reducer)**
 ```
